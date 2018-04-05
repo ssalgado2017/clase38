@@ -1,0 +1,19 @@
+<div class = "container">
+	<div class = "row">
+		<% @homeworks.each_slice(3) do |row|%>
+			<% row.each do |homework| %>
+				<div class = "col">
+					<div class="card">
+						<%= image_tag homework.photo, class: 'card-img-top' %>
+						<div class ="body">
+							<h5><%= homework.name %></h5>
+							<%= link_to "No listo", homework_user_homeworks_path(homework), class: 'btn btn-danger', method: :post%>
+							<%= link_to "Detalle", user_homeworks_path, class: 'btn btn-primary'%>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<div class="w-100" style="margin-top: 20px"></div>	
+		<% end %>
+	</div>
+</div>

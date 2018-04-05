@@ -1,0 +1,7 @@
+<table class="table">
+<% @user_homeworks.each do |user_homework|%>
+	<tr>
+		<td> <%= user_homework.user.email %></td>
+	</tr>
+<% end %>
+</table>

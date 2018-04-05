@@ -1,0 +1,29 @@
+<h1>Tareas</h1>
+<div class = "container">
+	<div class = "row">
+		<% @homeworks.each_slice(3) do |row|%>
+			<% row.each do |homework| %>
+				<div class = "col">
+					<div class="card">
+						<%= image_tag homework.photo, class: 'card-img-top' %>
+						<div class ="body">
+							<h5><%= homework.name %></h5>
+							<% @flag = true%>
+            				<% homework.users.each do |user| %>
+                				<% if (user.id == current_user.id) %>
+                  					<p><%= link_to 'Listo', remove_check_homework_path(homework) , method: :delete, class:'btn btn-xs btn-success'%></p>
+                  						<% @flag = false%>
+                				<% end %>
+            				<% end %>
+
+              			<% if @flag  %>
+                			<p><%= link_to 'No Listo', add_check_homework_path(homework) , method: :post, class:'btn btn-xs btn-danger'%></p>
+              			<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<div class="w-100" style="margin-top: 20px"></div>	
+		<% end %>
+	</div>
+</div>
